@@ -15,8 +15,8 @@ artifacts/
 cache/
 coverage/
 
-# Typechain and generated types
-typechain-types/
+# Typechain and generated types (keeping typechain-types tracked for Vercel build)
+# typechain-types/
 
 # Project and OS files
 .DS_Store
