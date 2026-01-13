@@ -1,10 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server'
-import FormData from 'form-data'
 
 export const runtime = 'nodejs'
-
-const PINATA_API_KEY = process.env.PINATA_API_KEY!
-const PINATA_SECRET_KEY = process.env.PINATA_SECRET_KEY!
 
 export async function POST(request: NextRequest) {
   try {
@@ -26,13 +22,9 @@ export async function POST(request: NextRequest) {
       )
     }
 
-    // Convert file to buffer
-    const bytes = await file.arrayBuffer()
-    const buffer = Buffer.from(bytes)
-
-    // Create form data for Pinata
+    // Create form data for Pinata using native FormData
     const pinataFormData = new FormData()
-    pinataFormData.append('file', buffer, file.name)
+    pinataFormData.append('file', file, file.name)
     
     const metadata = {
       name: file.name,
