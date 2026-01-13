@@ -1,29 +1,29 @@
-import { ethers } from 'ethers';
+import { ethers, ContractTransactionResponse } from 'ethers';
 
 export interface MarketItem {
-  tokenId: ethers.BigNumber;
+  tokenId: bigint;
   seller: string;
   owner: string;
-  price: ethers.BigNumber;
+  price: bigint;
   sold: boolean;
 }
 
 export interface NFTMarketplace {
-  createToken(tokenURI: string, price: ethers.BigNumber, overrides?: any): Promise<ethers.ContractTransaction>;
-  createMarketSale(tokenId: ethers.BigNumber, overrides?: any): Promise<ethers.ContractTransaction>;
-  resellToken(tokenId: ethers.BigNumber, price: ethers.BigNumber, overrides?: any): Promise<ethers.ContractTransaction>;
+  createToken(tokenURI: string, price: bigint, overrides?: any): Promise<ContractTransactionResponse>;
+  createMarketSale(tokenId: bigint, overrides?: any): Promise<ContractTransactionResponse>;
+  resellToken(tokenId: bigint, price: bigint, overrides?: any): Promise<ContractTransactionResponse>;
   fetchMarketItems(): Promise<MarketItem[]>;
   fetchMyNFTs(): Promise<MarketItem[]>;
   fetchItemsListed(): Promise<MarketItem[]>;
-  getListingPrice(): Promise<ethers.BigNumber>;
-  updateListingPrice(listingPrice: ethers.BigNumber): Promise<ethers.ContractTransaction>;
-  withdraw(): Promise<ethers.ContractTransaction>;
-  tokenURI(tokenId: ethers.BigNumber): Promise<string>;
-  ownerOf(tokenId: ethers.BigNumber): Promise<string>;
+  getListingPrice(): Promise<bigint>;
+  updateListingPrice(listingPrice: bigint): Promise<ContractTransactionResponse>;
+  withdraw(): Promise<ContractTransactionResponse>;
+  tokenURI(tokenId: bigint): Promise<string>;
+  ownerOf(tokenId: bigint): Promise<string>;
 }
 
 export class NFTMarketplace__factory {
   static connect(address: string, signerOrProvider: ethers.Signer | ethers.Provider): NFTMarketplace {
-    return new ethers.Contract(address, [], signerOrProvider) as NFTMarketplace;
+    return new ethers.Contract(address, [], signerOrProvider) as unknown as NFTMarketplace;
   }
 }
