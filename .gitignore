@@ -1,0 +1,28 @@
+# Node modules
+node_modules/
+
+# Environment files (secrets)
+.env
+.env.*
+.env.local
+
+# Next.js build output
+.next/
+.out/
+
+# Build/test artifacts
+artifacts/
+cache/
+coverage/
+
+# Typechain and generated types
+typechain-types/
+
+# Project and OS files
+.DS_Store
+.vscode/
+
+# Logs
+npm-debug.log*
+yarn-error.log*
+pnpm-debug.log*
